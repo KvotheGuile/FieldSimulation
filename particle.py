@@ -9,11 +9,11 @@ class Particle:
         self.pos = [x_pos, y_pos]
         self.charge = charge
 
-    def electric_field_at(self, point:list[float]) -> list[float]:
+    def electric_field_at(self, point: list[float]) -> list[float]:
         distance: float = self.distance_to(point[0], point[1])
         if distance == 0: return [0, 0]
 
-        magnitude: float = K_CONSTANT * self.charge / (distance**2)
+        magnitude: float = K_CONSTANT * self.charge / (distance * distance)
         direction: list[float] = self.direction_to(point)
         return [magnitude * direction[0], magnitude * direction[1]]
 
