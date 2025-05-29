@@ -2,52 +2,38 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Defining subplots
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize =(14, 8))
+def draw(particles, limits, h=0.1):
 
-# first subplot
-# Creating arrows
-x = np.arange(0, 2.2, 0.2)
-y = np.arange(0, 2.2, 0.2)
-X, Y = np.meshgrid(x, y)
-u = np.cos(X)*Y
-v = np.sin(y)*Y
-n = -2
+    # Defining subplots
+    fig, ax1 = plt.subplots(1, 1)
 
-# Defining color
-color = np.sqrt(((v-n)/2)*2 + ((u-n)/2)*2)
+    # first subplot
+    # Creating arrows
+    x = np.arange(limits[0], limits[1], h)
+    y = np.arange(limits[0], limits[1], h)
+    X, Y = np.meshgrid(x, y)
+    u = np.cos(X)*Y
+    v = np.sin(y)*Y
+    n = -2
 
-# Creating plot
-ax1.quiver(X, Y, u, v, color, alpha = 0.8)
-ax1.xaxis.set_ticks([])
-ax1.yaxis.set_ticks([])
-ax1.axis([-0.2, 2.3, -0.2, 2.3])
-ax1.set_aspect('equal')
-ax1.set_title('meshgrid function')
+    # Defining color
+    color = np.sqrt(((v-n)/2)*2 + ((u-n)/2)*2)
 
-# second subplot
-# Creating arrows
-x = np.arange(-2, 2.2, 0.2)
-y = np.arange(-2, 2.2, 0.2)
-X, Y = np.meshgrid(x, y)
-z = X * np.exp(-X**2 -Y**2)
-dx, dy = np.gradient(z)
-n = -2
+    # Creating plot
+    ax1.quiver(X, Y, u, v, color, alpha=0.8)
+    ax1.xaxis.set_ticks([])
+    ax1.yaxis.set_ticks([])
+    ax1.axis([limits[0] - 0.2, limits[1] + 0.1, limits[0] - 0.2, limits[1] + 0.1])
+    ax1.set_aspect('equal')
+    ax1.set_title('meshgrid function')
 
-# Defining color
-color = np.sqrt(((dx-n)/2)*2 + ((dy-n)/2)*2)
+    # show figure
+    plt.tight_layout()
+    plt.show()
 
-# Creating plot
-ax2.quiver(X, Y, dx, dy, color)
-ax2.xaxis.set_ticks([])
-ax2.yaxis.set_ticks([])
-ax2.set_aspect('equal')
-ax2.set_title('gradient')
+def main():
 
+    draw(None, [0, 2], h=0.1)
 
-# show figure
-plt.tight_layout()
-plt.show()
-
-
-
+if __name__ == "__main__":
+    main()
