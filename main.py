@@ -1,8 +1,10 @@
+
 # Import libraries
 import numpy as np
 import matplotlib.pyplot as plt
 from particle_group import ParticleManager
 from particle import Particle
+from time import sleep
 
 def draw(particles, limits, h=0.1):
 
@@ -52,6 +54,8 @@ def main():
 
     particles.add_particle(Particle(0, 1, 1.602e-19))
     particles.add_particle(Particle(0, -1, -1.602e-19))
+
+    particles.add_particle(Particle(0.5, -0.5, 1.602e-19))
 
     draw(particles, [-2, 2], h=0.125)
 

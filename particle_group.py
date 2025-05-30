@@ -8,8 +8,6 @@ class ParticleManager:
 
     def electric_field_x(self, x: float, y: float) -> float:
         vec = self.electric_field_at_point([x, y])
-        if vec[0] > 1e-6:
-            print(f"ERROR: ({x}, {y}), result is {vec}")
         return vec[0]
 
     def electric_field_y(self, x: float, y: float) -> float:
